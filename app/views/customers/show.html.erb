@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <%= @customer.name %> -
+  <%= @customer.email %>
+</p>
+
+<div>
+  <strong>Billing Address:</strong>
+  <%= render 'addresses/display', address: @customer.billing_address %>
+</div>
+
+<%= link_to 'Edit', edit_customer_path(@customer) %> |
+<%= link_to 'Back', customers_path %>
