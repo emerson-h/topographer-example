@@ -1,7 +1,7 @@
 <% if logger %>
-  <div class="error-message">
+  <div class="alert alert-error">
     <p>Errors occured during import:</p>
-    <ol class="error-message-list">
+    <ol class="import-errors">
       <% logger.all_entries.each do |log_entry| %>
         <% if log_entry.failure? %>
           <li>
