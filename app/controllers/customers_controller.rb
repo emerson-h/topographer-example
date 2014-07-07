@@ -5,6 +5,18 @@ class CustomersController < ApplicationController
   end
 
   def process_import
+    @logger = Imports::UserInterfaceImport.import_spreadsheet(
+      params[:import_file],
+      Imports::Runners::ImportNewRecord,
+      Imports::Mappings::Customer
+    )
+    if @logger.errors?
+      @inventory_items = InventoryItem.all
+      render action: :import
+    else
+      flash[:success] = 'Customers imported successfully'
+      redirect_to action: :index
+    end
   end
 
   def index

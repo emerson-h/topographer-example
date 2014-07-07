@@ -12,6 +12,7 @@ feature 'Customer Spreadsheet Import' do
       within('.import-form') do
         attach_file('import_file', 'spec/fixtures/valid_customer_import.xlsx')
         click_on('Import')
+        save_and_open_page
       end
     }.to change { Customer.count }.by(3)
   end
