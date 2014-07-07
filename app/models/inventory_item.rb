@@ -2,6 +2,7 @@ class InventoryItem < ActiveRecord::Base
 
   validates :name, presence: true
   validates :sku_code, presence: true
+  validates :sku_code, uniqueness: true
   validates :description, presence: true
   validates :quantity, presence: true
   validates :quantity, numericality: { only_integer: true}

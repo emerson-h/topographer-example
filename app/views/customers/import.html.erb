@@ -1,0 +1,48 @@
+<h1>Upload a file containing some customers.</h1>
+<h2>It should be in this format:</h2>
+<table class="import_table">
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Billing Street</th>
+    <th>Billing City</th>
+    <th>Billing State</th>
+    <th>Billing Zip Code</th>
+    <th>Primary Shipping Street</th>
+    <th>Primary Shipping City</th>
+    <th>Primary Shipping State</th>
+    <th>Primary Shipping Zip Code</th>
+    <th>Secondary Shipping Street</th>
+    <th>Secondary Shipping City</th>
+    <th>Secondary Shipping State</th>
+    <th>Secondary Shipping Zip Code</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td>required</td>
+    <td>required</td>
+    <td>required</td>
+    <td>required</td>
+    <td>required</td>
+    <td>required</td>
+    <td>required</td>
+    <td>required</td>
+    <td>required</td>
+    <td>required</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  </tbody>
+</table>
+
+<%= render 'shared/import_log', logger: @logger %>
+
+<%= form_tag import_customers_path, method: :post, class: 'import-form' do %>
+  <label for="import_file">Import File</label>
+  <%= file_field_tag :import_file %>
+  <button>Import</button>
+<% end %>

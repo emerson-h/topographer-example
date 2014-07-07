@@ -1,15 +1,26 @@
 Rails.application.routes.draw do
-  resources :inventory_items
+  resources :inventory_items do
+    collection do
+      get :import
+      post :import, action: :process_import
+    end
+  end
 
   resources :orders
 
-  resources :customers
+  resources :customers do
+    collection do
+      get :import
+      post :import, action: :process_import
+    end
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
   root 'inventory_items#index'
+
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
