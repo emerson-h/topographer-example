@@ -26,8 +26,11 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'roo', github: 'SciMed/roo', branch: 'updated_with_untyped'
 
 gem 'topographer'
+gem 'faraday'
 
 group :test do
+  gem 'sinatra', require: false
+  gem 'webmock', require: false
   gem 'rspec'
   gem 'rspec-rails'
   gem 'capybara', require: false
