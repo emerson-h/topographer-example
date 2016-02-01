@@ -39,9 +39,9 @@
   </tbody>
 </table>
 
-<%= render 'shared/import_log', logger: @logger %>
+<%= render 'shared/import_log', errors: @errors %>
 
-<%= form_tag import_customers_path, method: :post, class: 'import-form' do %>
+<%= form_tag import_customers_path, multipart: true, method: :post, class: 'import-form' do %>
   <label for="import_file">Import File</label>
   <%= file_field_tag :import_file %>
   <button>Import</button>
