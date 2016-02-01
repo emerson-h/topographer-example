@@ -6,6 +6,8 @@ class Customer < ActiveRecord::Base
 
   has_many :orders
   has_one :billing_address, class_name: 'Address', as: :addressable
+  has_one :primary_shipping_address, class_name: 'Address', as: :addressable
+  has_one :secondary_shipping_address, class_name: 'Address', as: :addressable
 
-  accepts_nested_attributes_for :billing_address
+  accepts_nested_attributes_for :billing_address, :primary_shipping_address, :secondary_shipping_address
 end
