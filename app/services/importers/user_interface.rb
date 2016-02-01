@@ -1,18 +1,18 @@
 module Importers
-  class InventoryItem
-    def initialize(file)
+  class UserInterface
+    def initialize(file:, mapping:)
       @logger = Topographer::Importer::Logger::Simple.new
+      @mapping = mapping
       setup_input(file)
     end
 
     def import
       return false unless @logger.success?
       ActiveRecord::Base.transaction do
-        mapping = Importers::InventoryItems::Mapping.new
         Topographer::Importer.import_data(
           @input,
-          mapping,
-          Topographer::Importer::Strategy::ImportNewRecord.new(mapping),
+          @mapping,
+          Topographer::Importer::Strategy::ImportNewRecord.new(@mapping),
           @logger
         )
         fail ActiveRecord::Rollback unless @logger.success?

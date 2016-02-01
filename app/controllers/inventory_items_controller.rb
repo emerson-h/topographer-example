@@ -6,7 +6,10 @@ class InventoryItemsController < ApplicationController
 
   def process_import
     data_file = params[:import_file].tempfile.path
-    importer = Importers::InventoryItem.new(data_file)
+    importer = Importers::UserInterface.new(
+      file: data_file,
+      mapping: Importers::InventoryItems::Mapping.new
+    )
     if !importer.import
       @inventory_items = InventoryItem.all
       @errors = importer.errors
