@@ -10,28 +10,28 @@ feature 'Customer Spreadsheet Import' do
 
     expect {
       within('.import-form') do
-        attach_file('import_file', 'spec/fixtures/valid_customer_import.csv')
+        attach_file('import_file', 'spec/fixtures/valid_customer_import.xlsx')
         click_on('Import')
       end
-    }.to change { Customer.count }.by(2)
+    }.to change { Customer.count }.by(3)
   end
   scenario 'user imports customers with missing information' do
     visit customers_path
     click_on 'Import Customers'
 
     within('.import-form') do
-      attach_file('import_file', 'spec/fixtures/valid_customer_import.csv')
+      attach_file('import_file', 'spec/fixtures/invalid_customer_import.xlsx')
       click_on('Import')
     end
 
-    page.should have_content /Unable to import customers/i
+    page.should have_content /Unable to import/i
   end
   scenario 'user imports customer spreadsheet with invalid headers' do
     visit customers_path
     click_on 'Import Customers'
 
     within('.import-form') do
-      attach_file('import_file', 'spec/fixtures/invalid_customer_import.csv')
+      attach_file('import_file', 'spec/fixtures/invalid_header_customer_import.xlsx')
       click_on('Import')
     end
 
