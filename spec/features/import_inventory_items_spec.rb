@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 feature 'Inventory Item Spreadsheet Import' do
   background do
