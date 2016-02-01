@@ -11,9 +11,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140616125100) do
+ActiveRecord::Schema.define(version: 20160201165110) do
 
-  create_table "addresses", force: true do |t|
+  create_table "addresses", force: :cascade do |t|
     t.string   "street"
     t.string   "city"
     t.string   "state"
@@ -24,14 +24,14 @@ ActiveRecord::Schema.define(version: 20140616125100) do
     t.datetime "updated_at"
   end
 
-  create_table "customers", force: true do |t|
+  create_table "customers", force: :cascade do |t|
     t.string   "name"
     t.string   "email"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "inventory_items", force: true do |t|
+  create_table "inventory_items", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
     t.integer  "quantity"
@@ -42,15 +42,16 @@ ActiveRecord::Schema.define(version: 20140616125100) do
     t.datetime "updated_at"
   end
 
-  create_table "order_items", force: true do |t|
+  create_table "order_items", force: :cascade do |t|
     t.float    "discount"
     t.integer  "order_id"
     t.integer  "inventory_item_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "quantity"
   end
 
-  create_table "orders", force: true do |t|
+  create_table "orders", force: :cascade do |t|
     t.string   "order_number"
     t.datetime "ordered_at"
     t.boolean  "on_hold",      default: false
