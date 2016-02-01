@@ -1,0 +1,34 @@
+{
+  "123": {
+    "items": [
+      {
+        "item_sku": "WS123",
+        "discount": 10.0
+      },
+      {
+        "item_sku": "WS124",
+        "discount": 0.0,
+        "quantity": 12
+      }
+    ]
+  },
+  "125": {
+    "items": [
+      {
+        "item_sku": "WS124",
+        "discount": 0.0,
+        "quantity": 4
+      },
+      {
+        "item_sku": "WS125",
+        "discount": 0.0,
+        "quantity": 4
+      },
+      {
+        "item_sku": "WS126",
+        "discount": 0.0,
+        "quantity": 4
+      }
+    ]
+  }
+}
