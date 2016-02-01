@@ -1,8 +1,9 @@
 module Importers
   class UserInterface
-    def initialize(file:, mapping:)
+    def initialize(file:, mapping:, strategy: nil)
       @logger = Topographer::Importer::Logger::Simple.new
       @mapping = mapping
+      @strategy = strategy || Topographer::Importer::Strategy::ImportNewRecord.new(@mapping)
       setup_input(file)
     end
 
@@ -12,7 +13,7 @@ module Importers
         Topographer::Importer.import_data(
           @input,
           @mapping,
-          Topographer::Importer::Strategy::ImportNewRecord.new(@mapping),
+          @strategy,
           @logger
         )
         fail ActiveRecord::Rollback unless @logger.success?

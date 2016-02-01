@@ -1,6 +1,26 @@
 class OrdersController < ApplicationController
   before_action :set_order, only: [:show, :destroy]
 
+  def import
+  end
+
+  def process_import
+    data_file = params[:import_file].tempfile.path
+    importer = Importers::UserInterface.new(
+      file: data_file,
+      mapping: Importers::Orders::Mapping.new,
+      strategy: Importers::Orders::Strategy.new
+    )
+    if !importer.import
+      @inventory_items = InventoryItem.all
+      @errors = importer.errors
+      render action: :import
+    else
+      flash[:success] = 'Inventory Items imported successfully'
+      redirect_to action: :index
+    end
+  end
+
   # GET /orders
   # GET /orders.json
   def index
