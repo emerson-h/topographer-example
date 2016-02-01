@@ -6,7 +6,12 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :orders
+  resources :orders do
+    collection do
+      get :import
+      post :import, action: :process_import
+    end
+  end
 
   resources :customers do
     collection do

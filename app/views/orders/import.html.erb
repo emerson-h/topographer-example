@@ -1,0 +1,34 @@
+<h1>Upload a file containing some orders.</h1>
+<h2>It should be in this format:</h2>
+<table class="import_table">
+  <thead>
+  <tr>
+    <th>Order Number</th>
+    <th>Order Date</th>
+    <th>Shipping Street</th>
+    <th>Shipping City</th>
+    <th>Shipping State</th>
+    <th>Shipping Zip</th>
+    <th>Customer Email</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td>required</td>
+    <td>required</td>
+    <td>required</td>
+    <td>required</td>
+    <td>required</td>
+    <td>required</td>
+    <td>required</td>
+  </tr>
+  </tbody>
+</table>
+
+<%= render 'shared/import_log', errors: @errors %>
+
+<%= form_tag import_orders_path, multipart: true, method: :post, class: 'import-form' do %>
+  <label for="import_file">Import File</label>
+  <%= file_field_tag :import_file %>
+  <button>Import</button>
+<% end %>
