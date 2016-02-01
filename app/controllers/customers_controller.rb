@@ -5,6 +5,19 @@ class CustomersController < ApplicationController
   end
 
   def process_import
+    data_file = params[:import_file].tempfile.path
+    importer = Importers::UserInterface.new(
+      file: data_file,
+      mapping: Importers::Customers::Mapping.new
+    )
+    if !importer.import
+      @inventory_items = InventoryItem.all
+      @errors = importer.errors
+      render action: :import
+    else
+      flash[:success] = 'Inventory Items imported successfully'
+      redirect_to action: :index
+    end
   end
 
   def index
