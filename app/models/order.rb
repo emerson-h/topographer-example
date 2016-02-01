@@ -1,6 +1,6 @@
 class Order < ActiveRecord::Base
 
-  validates :order_number, presence: true
+  validates :order_number, presence: true, uniqueness: true
 
   belongs_to :customer
 
